@@ -1,5 +1,7 @@
 pipeline {
-	agent any
+	agent {
+		docker { image 'node:7-alpine' }
+	}
 	stages {
 		stage('Build') {
 			steps {
@@ -13,7 +15,8 @@ pipeline {
 		stage('Test') {
 			steps {
 				// sh 'echo "Fail!"; exit 1'
-				sh 'echo "Yes!"; exit 0'
+				// sh 'echo "Yes!"; exit 0'
+				sh 'node --version'
 			}
 		}
 	}
