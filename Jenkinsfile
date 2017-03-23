@@ -10,6 +10,29 @@ pipeline {
                                 '''
 			}
 		}
+		stage('Test') {
+			steps {
+				sh 'echo "Fail!"; exit 1'
+			}
+		}
+	}
+	post {
+		always {
+			echo 'This will always run'
+		}
+		success {
+			echo 'This will only run if successful'
+		}
+		failure {
+			echo 'This will only run if a failure happens'
+		}
+		unstable {
+			echo 'This will only run if the test was marked unstable'
+		}
+		changed {
+			echo 'This will only run if the state of the Pipeline has changed'
+			echo 'For example if it was failed and now it is success'
+		}
 	}
 }
 				
